@@ -181,8 +181,9 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     st.header("📊 Hasil Evaluasi")
 
     st.dataframe(
-        df,
-        use_container_width=True
+    df,
+    use_container_width=True,
+    hide_index=True
     )
 
     # =========================
@@ -256,25 +257,7 @@ if st.button("🔍 Evaluasi Kualitas Air"):
             + ", ".join(gagal)
         )
 
-    # =========================
-    # GRAFIK
-    # =========================
-
     st.divider()
-    st.header("🥧 Ringkasan Status Parameter")
-
-    grafik = df["Status"].value_counts()
-
-    fig, ax = plt.subplots()
-
-    warna = ["#7FB3D5", "#AED6F1"]
-
-    ax.pie(
-    grafik,
-    labels=grafik.index,
-    autopct="%1.1f%%",
-    colors=warna
+    st.caption(
+    "AquaCheck | Evaluasi Kualitas Air Kelas I berdasarkan PP No. 22 Tahun 2021"
     )
-
-    ax.axis("equal")
-    st.pyplot(fig)
