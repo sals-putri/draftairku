@@ -120,11 +120,11 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     hasil.append(["pH", ph, "6 - 9", status_ph])
 
     # BOD
-    status_bod = "✅ Memenuhi" if bod <= 2 else " ❌ Tidak Memenuhi"
+    status_bod = "✅ Memenuhi" if bod <= 2 else "❌ Tidak Memenuhi"
     hasil.append(["BOD", bod, "≤ 2", status_bod])
 
     # COD
-    status_cod = "✅ Memenuhi" if cod <= 10 else " ❌ Tidak Memenuhi"
+    status_cod = "✅ Memenuhi" if cod <= 10 else "❌ Tidak Memenuhi"
     hasil.append(["COD", cod, "≤ 10", status_cod])
 
     # DO
@@ -164,12 +164,12 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     # =========================
     # PERHITUNGAN
     # =========================
-   jumlah_memenuhi = (
-    df["Status"] == "✅ Memenuhi"
+    jumlah_memenuhi = (
+        df["Status"] == "✅ Memenuhi"
     ).sum()
 
     jumlah_tidak = (
-    df["Status"] == "❌ Tidak Memenuhi"
+        df["Status"] == "❌ Tidak Memenuhi"
     ).sum()
 
     total_parameter = len(df)
