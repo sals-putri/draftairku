@@ -6,7 +6,12 @@ import pandas as pd
 # KONFIGURASI HALAMAN
 # =========================
 st.set_page_config(
-    st.markdown("""
+    page_title="Evaluasi Kualitas Air Kelas I",
+    page_icon="💧",
+    layout="wide"
+)
+
+st.markdown("""
 <style>
 
 .stApp {
@@ -17,48 +22,9 @@ st.set_page_config(
     );
 }
 
-h1 {
-    color: #1F618D;
-}
-
-h2 {
-    color: #2874A6;
-}
-
-h3 {
-    color: #2E86C1;
-}
-
-[data-testid="stMetric"] {
-    background-color: white;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
-}
-
-.stButton > button {
-    background-color: #5DADE2;
-    color: white;
-    border-radius: 10px;
-    border: none;
-    padding: 10px 20px;
-    font-weight: bold;
-}
-
-.stButton > button:hover {
-    background-color: #3498DB;
-}
-
 </style>
 """, unsafe_allow_html=True)
-    page_title="Evaluasi Kualitas Air Kelas I",
-    page_icon="💧",
-    layout="wide"
-)
 
-# =========================
-# JUDUL
-# =========================
 st.markdown("""
 <div style="
 background: linear-gradient(
@@ -79,7 +45,7 @@ st.subheader("Berdasarkan PP No. 22 Tahun 2021")
 st.write(
     """
     Aplikasi ini digunakan untuk mengevaluasi kualitas air terhadap
-    baku mutu Air Kelas I (air baku untuk air konsumsi).
+    baku mutu Air Kelas I (air baku untuk penyediaan air minum).
     """
 )
 
@@ -199,11 +165,11 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     # PERHITUNGAN
     # =========================
     jumlah_memenuhi = (
-        df["Status"] == "Memenuhi"
+        df["Status"].str.contains("Memenuhi")
     ).sum()
 
     jumlah_tidak = (
-        df["Status"] == "Tidak Memenuhi"
+        df["Status"].str.contains("Tidak Memenuhi")
     ).sum()
 
     total_parameter = len(df)
@@ -258,7 +224,7 @@ if st.button("🔍 Evaluasi Kualitas Air"):
         )
 
         gagal = df[
-            df["Status"] == "Tidak Memenuhi"
+            df["Status"].str.contains("Tidak")
         ]["Parameter"].tolist()
 
         st.warning(
@@ -269,22 +235,22 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     # =========================
     # GRAFIK
     # =========================
+
     st.divider()
-st.header("🥧 Ringkasan Status Parameter")
+    st.header("🥧 Ringkasan Status Parameter")
 
-grafik = df["Status"].value_counts()
+    grafik = df["Status"].value_counts()
 
-fig, ax = plt.subplots()
+    fig, ax = plt.subplots()
 
-warna = ["#7FB3D5", "#AED6F1"]
+    warna = ["#7FB3D5", "#AED6F1"]
 
-ax.pie(
+    ax.pie(
     grafik,
     labels=grafik.index,
     autopct="%1.1f%%",
     colors=warna
-)
+    )
 
-ax.axis("equal")
-
-st.pyplot(fig)
+    ax.axis("equal")
+    st.pyplot(fig)
