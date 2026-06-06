@@ -183,20 +183,20 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     styled_df = (
     df.style
     .set_properties(
-        subset=["Hasil", "Baku Mutu", "Status"],
-        **{"text-align": "center"}
+        subset=["Parameter"],
+        **{
+            "text-align": "left"
+        }
     )
     .set_properties(
-        subset=["Parameter"],
-        **{"text-align": "left"}
+        subset=["Hasil", "Baku Mutu", "Status"],
+        **{
+            "text-align": "center"
+        }
     )
     )
 
-    st.dataframe(
-    styled_df,
-    use_container_width=True,
-    hide_index=True
-    )
+    st.table(styled_df)
 
     # =========================
     # PERHITUNGAN
@@ -219,24 +219,56 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     # =========================
     # METRIK
     # =========================
-    c1, c2, c3 = st.columns(3)
+    st.markdown("""
+<style>
+.metric-card {
+    background-color: white;
+    padding: 18px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+}
 
-    c1.metric(
-        "Parameter Memenuhi",
-        jumlah_memenuhi
-    )
+.metric-title {
+    font-size: 16px;
+    color: #555;
+}
 
-    c2.metric(
-        "Parameter Tidak Memenuhi",
-        jumlah_tidak
-    )
+.metric-value {
+    font-size: 42px;
+    font-weight: bold;
+    color: #2E4053;
+}
+</style>
+""", unsafe_allow_html=True)
 
-    c3.metric(
-        "Persentase Kepatuhan",
-        f"{persentase:.1f}%"
-    )
+col1, col2, col3 = st.columns(3)
 
-    st.divider()
+with col1:
+    st.markdown(f"""
+    <div class="metric-card">
+        <div class="metric-title">✅ Memenuhi</div>
+        <div class="metric-value">{jumlah_memenuhi}</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown(f"""
+    <div class="metric-card">
+        <div class="metric-title">❌ Tidak Memenuhi</div>
+        <div class="metric-value">{jumlah_tidak}</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col3:
+    st.markdown(f"""
+    <div class="metric-card">
+        <div class="metric-title">📈 Kepatuhan</div>
+        <div class="metric-value">{persentase:.1f}%</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.divider()
 
     # =========================
     # KESIMPULAN
