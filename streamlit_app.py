@@ -220,31 +220,31 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     # METRIK
     # =========================
     st.markdown("""
-<style>
-.metric-card {
-    background-color: white;
-    padding: 18px;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
-}
+    <style>
+    .metric-card {
+        background-color: white;
+        padding: 18px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+    }
 
-.metric-title {
-    font-size: 16px;
-    color: #555;
-}
+    .metric-title {
+        font-size: 16px;
+        color: #555;
+    }
 
-.metric-value {
-    font-size: 42px;
-    font-weight: bold;
-    color: #2E4053;
-}
-</style>
-""", unsafe_allow_html=True)
+    .metric-value {
+        font-size: 42px;
+        font-weight: bold;
+        color: #2E4053;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns(3)
+    col1, col2, col3 = st.columns(3)
 
-with col1:
+    with col1:
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-title">✅ Memenuhi</div>
@@ -252,7 +252,7 @@ with col1:
     </div>
     """, unsafe_allow_html=True)
 
-with col2:
+    with col2:
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-title">❌ Tidak Memenuhi</div>
@@ -260,7 +260,7 @@ with col2:
     </div>
     """, unsafe_allow_html=True)
 
-with col3:
+    with col3:
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-title">📈 Kepatuhan</div>
@@ -268,7 +268,7 @@ with col3:
     </div>
     """, unsafe_allow_html=True)
 
-st.divider()
+    st.divider()
 
     # =========================
     # KESIMPULAN
