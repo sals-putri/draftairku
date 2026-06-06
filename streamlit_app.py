@@ -116,11 +116,11 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     hasil = []
 
     # pH
-    status_ph = "✅Memenuhi" if 6 <= ph <= 9 else "❌Tidak Memenuhi"
+    status_ph = "✅ Memenuhi" if 6 <= ph <= 9 else "❌ Tidak Memenuhi"
     hasil.append(["pH", ph, "6 - 9", status_ph])
 
     # BOD
-    status_bod = "✅Memenuhi" if bod <= 2 else "❌Tidak Memenuhi"
+    status_bod = "✅ Memenuhi" if bod <= 2 else " ❌Tidak Memenuhi"
     hasil.append(["BOD", bod, "≤ 2", status_bod])
 
     # COD
@@ -128,15 +128,15 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     hasil.append(["COD", cod, "≤ 10", status_cod])
 
     # DO
-    status_do = "✅Memenuhi" if do >= 6 else "❌Tidak Memenuhi"
+    status_do = "✅ Memenuhi" if do >= 6 else "❌ Tidak Memenuhi"
     hasil.append(["DO", do, "≥ 6", status_do])
 
     # TSS
-    status_tss = "✅Memenuhi" if tss <= 40 else "❌Tidak Memenuhi"
+    status_tss = "✅ Memenuhi" if tss <= 40 else "❌ Tidak Memenuhi"
     hasil.append(["TSS", tss, "≤ 40", status_tss])
 
     # TDS
-    status_tds = "✅Memenuhi" if tds <= 1000 else "❌Tidak Memenuhi"
+    status_tds = "✅ Memenuhi" if tds <= 1000 else "❌ Tidak Memenuhi"
     hasil.append(["TDS", tds, "≤ 1000", status_tds])
 
     # =========================
@@ -164,13 +164,13 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     # =========================
     # PERHITUNGAN
     # =========================
-    jumlah_memenuhi = (
-        df["Status"].str.contains("Memenuhi")
-    ).sum()
+   jumlah_memenuhi = (
+    df["Status"] == "✅ Memenuhi"
+).sum()
 
-    jumlah_tidak = (
-        df["Status"].str.contains("Tidak Memenuhi")
-    ).sum()
+jumlah_tidak = (
+    df["Status"] == "❌ Tidak Memenuhi"
+).sum()
 
     total_parameter = len(df)
 
