@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import streamlit as st
 import pandas as pd
 
@@ -245,28 +244,28 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     col1, col2, col3 = st.columns(3)
 
     with col1:
-    st.markdown(f"""
-    <div class="metric-card">
-        <div class="metric-title">✅ Memenuhi</div>
-        <div class="metric-value">{jumlah_memenuhi}</div>
-    </div>
-    """, unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class="metric-card">
+            <div class="metric-title">✅ Memenuhi</div>
+            <div class="metric-value">{jumlah_memenuhi}</div>
+        </div>
+        """, unsafe_allow_html=True)
 
     with col2:
-    st.markdown(f"""
-    <div class="metric-card">
-        <div class="metric-title">❌ Tidak Memenuhi</div>
-        <div class="metric-value">{jumlah_tidak}</div>
-    </div>
-    """, unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class="metric-card">
+            <div class="metric-title">❌ Tidak Memenuhi</div>
+            <div class="metric-value">{jumlah_tidak}</div>
+        </div>
+        """, unsafe_allow_html=True)
 
     with col3:
-    st.markdown(f"""
-    <div class="metric-card">
-        <div class="metric-title">📈 Kepatuhan</div>
-        <div class="metric-value">{persentase:.1f}%</div>
-    </div>
-    """, unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class="metric-card">
+            <div class="metric-title">📈 Kepatuhan</div>
+            <div class="metric-value">{persentase:.1f}%</div>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.divider()
 
@@ -303,5 +302,5 @@ if st.button("🔍 Evaluasi Kualitas Air"):
 
     st.divider()
     st.caption(
-    "AquaCheck | Evaluasi Kualitas Air Kelas I berdasarkan PP No. 22 Tahun 2021"
+        "AquaCheck | Evaluasi Kualitas Air Kelas I berdasarkan PP No. 22 Tahun 2021"
     )
