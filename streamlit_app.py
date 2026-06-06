@@ -24,6 +24,30 @@ st.markdown("""
 
 </style>
 """, unsafe_allow_html=True)
+st.markdown("""
+<style>
+
+/* Metric Card */
+[data-testid="stMetric"] {
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Judul Metric */
+[data-testid="stMetricLabel"] {
+    justify-content: center;
+}
+
+/* Nilai Metric */
+[data-testid="stMetricValue"] {
+    justify-content: center;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 st.markdown("""
 <div style="
