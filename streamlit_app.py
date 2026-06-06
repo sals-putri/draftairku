@@ -65,7 +65,7 @@ color:white;
 <p>Evaluasi Kualitas Air Kelas I Berdasarkan PP No. 22 Tahun 2021</p>
 </div>
 """, unsafe_allow_html=True)
-st.subheader("Acuan : PP No. 22 Tahun 2021")
+st.subheader("Acuan : Peraturan Pemerintah Nomor 22 Tahun 2021")
 st.write(
     """
     Aplikasi ini digunakan untuk mengevaluasi kualitas air terhadap
@@ -180,8 +180,20 @@ if st.button("🔍 Evaluasi Kualitas Air"):
 
     st.header("📊 Hasil Evaluasi")
 
+    styled_df = (
+    df.style
+    .set_properties(
+        subset=["Hasil", "Baku Mutu", "Status"],
+        **{"text-align": "center"}
+    )
+    .set_properties(
+        subset=["Parameter"],
+        **{"text-align": "left"}
+    )
+    )
+
     st.dataframe(
-    df,
+    styled_df,
     use_container_width=True,
     hide_index=True
     )
