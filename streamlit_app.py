@@ -65,7 +65,7 @@ color:white;
 <p>Evaluasi Kualitas Air Kelas I Berdasarkan PP No. 22 Tahun 2021</p>
 </div>
 """, unsafe_allow_html=True)
-st.subheader("Berdasarkan PP No. 22 Tahun 2021")
+st.subheader("Acuan : PP No. 22 Tahun 2021")
 st.write(
     """
     Aplikasi ini digunakan untuk mengevaluasi kualitas air terhadap
@@ -253,7 +253,7 @@ if st.button("🔍 Evaluasi Kualitas Air"):
         ]["Parameter"].tolist()
 
         st.warning(
-            "Parameter yang tidak memenuhi: "
+            "Parameter yang tidak memenuhi : "
             + ", ".join(gagal)
         )
 
