@@ -175,6 +175,22 @@ if st.button("🔍 Evaluasi Kualitas Air"):
         ]
     )
 
+    df["Hasil"] = df["Hasil"].apply(
+        lambda x: f"{x:.2f}".replace(".", ",")
+    )
+
+    styled_df = (
+        df.style
+        .set_properties(
+            subset=["Parameter"],
+            **{"text-align": "left"}
+        )
+        .set_properties(
+            subset=["Hasil", "Baku Mutu", "Status"],
+            **{"text-align": "center"}
+        )
+    )
+
     st.divider()
 
     st.header("📊 Hasil Evaluasi")
