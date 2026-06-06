@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import streamlit as st
 import pandas as pd
 
@@ -5,6 +6,51 @@ import pandas as pd
 # KONFIGURASI HALAMAN
 # =========================
 st.set_page_config(
+    st.markdown("""
+<style>
+
+.stApp {
+    background: linear-gradient(
+        to bottom,
+        #F7FBFC,
+        #EAF4F4
+    );
+}
+
+h1 {
+    color: #1F618D;
+}
+
+h2 {
+    color: #2874A6;
+}
+
+h3 {
+    color: #2E86C1;
+}
+
+[data-testid="stMetric"] {
+    background-color: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+}
+
+.stButton > button {
+    background-color: #5DADE2;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+.stButton > button:hover {
+    background-color: #3498DB;
+}
+
+</style>
+""", unsafe_allow_html=True)
     page_title="Evaluasi Kualitas Air Kelas I",
     page_icon="💧",
     layout="wide"
@@ -13,12 +59,27 @@ st.set_page_config(
 # =========================
 # JUDUL
 # =========================
-st.title("💧 Evaluasi Kualitas Air Kelas I")
+st.markdown("""
+<div style="
+background: linear-gradient(
+90deg,
+#5DADE2,
+#85C1E9
+);
+padding:20px;
+border-radius:15px;
+text-align:center;
+color:white;
+">
+<h1>💧 Water Quality Assessment</h1>
+<p>Evaluasi Kualitas Air Kelas I Berdasarkan PP No. 22 Tahun 2021</p>
+</div>
+""", unsafe_allow_html=True)
 st.subheader("Berdasarkan PP No. 22 Tahun 2021")
 st.write(
     """
     Aplikasi ini digunakan untuk mengevaluasi kualitas air terhadap
-    baku mutu Air Kelas I (air baku untuk air minum).
+    baku mutu Air Kelas I (air baku untuk air konsumsi).
     """
 )
 
@@ -89,27 +150,27 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     hasil = []
 
     # pH
-    status_ph = "Memenuhi" if 6 <= ph <= 9 else "Tidak Memenuhi"
+    status_ph = "✅Memenuhi" if 6 <= ph <= 9 else "❌Tidak Memenuhi"
     hasil.append(["pH", ph, "6 - 9", status_ph])
 
     # BOD
-    status_bod = "Memenuhi" if bod <= 2 else "Tidak Memenuhi"
+    status_bod = "✅Memenuhi" if bod <= 2 else "❌Tidak Memenuhi"
     hasil.append(["BOD", bod, "≤ 2", status_bod])
 
     # COD
-    status_cod = "Memenuhi" if cod <= 10 else "Tidak Memenuhi"
+    status_cod = "✅Memenuhi" if cod <= 10 else "❌Tidak Memenuhi"
     hasil.append(["COD", cod, "≤ 10", status_cod])
 
     # DO
-    status_do = "Memenuhi" if do >= 6 else "Tidak Memenuhi"
+    status_do = "✅Memenuhi" if do >= 6 else "❌Tidak Memenuhi"
     hasil.append(["DO", do, "≥ 6", status_do])
 
     # TSS
-    status_tss = "Memenuhi" if tss <= 40 else "Tidak Memenuhi"
+    status_tss = "✅Memenuhi" if tss <= 40 else "❌Tidak Memenuhi"
     hasil.append(["TSS", tss, "≤ 40", status_tss])
 
     # TDS
-    status_tds = "Memenuhi" if tds <= 1000 else "Tidak Memenuhi"
+    status_tds = "✅Memenuhi" if tds <= 1000 else "❌Tidak Memenuhi"
     hasil.append(["TDS", tds, "≤ 1000", status_tds])
 
     # =========================
@@ -209,11 +270,21 @@ if st.button("🔍 Evaluasi Kualitas Air"):
     # GRAFIK
     # =========================
     st.divider()
-    st.header("📈 Ringkasan Status Parameter")
+st.header("🥧 Ringkasan Status Parameter")
 
-    grafik = (
-        df["Status"]
-        .value_counts()
-    )
+grafik = df["Status"].value_counts()
 
-    st.bar_chart(grafik)
+fig, ax = plt.subplots()
+
+warna = ["#7FB3D5", "#AED6F1"]
+
+ax.pie(
+    grafik,
+    labels=grafik.index,
+    autopct="%1.1f%%",
+    colors=warna
+)
+
+ax.axis("equal")
+
+st.pyplot(fig)
